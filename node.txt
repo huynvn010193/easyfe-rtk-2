@@ -1,0 +1,7 @@
+cài đặt: npx create-react-app my-app --template redux-typescript
+
+Differences Between Type Aliases and Interfaces: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
+Đối với interface có thể add thêm key. còn types thì không được
+
+Thêm baseUrl": "./src" -> tsconfig : giúp cho sử dụng đường dẫn tuyệt đối
+Thêm file .prettierrc
