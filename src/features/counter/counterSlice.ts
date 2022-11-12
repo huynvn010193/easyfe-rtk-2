@@ -10,6 +10,7 @@ export interface CounterState {
 const initialState: CounterState = {
   value: 0,
   status: 'idle',
+  
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
