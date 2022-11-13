@@ -9,3 +9,5 @@ Thêm file .prettierrc
 Trong redux-tool-kit:
 useAppSelector: khi muốn lấy 1 giá trị từ redux
 useAppDispatch: muốn dispatch 1 function
+
++ không phải cái handle action nào cũng đẩy lên Saga, chỉ những action có side effects
