@@ -11,3 +11,11 @@ useAppSelector: khi muốn lấy 1 giá trị từ redux
 useAppDispatch: muốn dispatch 1 function
 
 + không phải cái handle action nào cũng đẩy lên Saga, chỉ những action có side effects
+
+Phân biệt fork và spawn : https://redux-saga.js.org/docs/advanced/ForkModel/
+fork: có lỗi => báo lên tk cha (main task).
+spawn: có lỗi => ko báo lên tk cha.
+
++ Cài đặt axios
+yarn add axios.
+interceptor axios : nghĩa là mình muốn làm một số việc gì đó, trước khi gửi lên server.
