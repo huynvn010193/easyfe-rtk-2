@@ -19,3 +19,7 @@ spawn: có lỗi => ko báo lên tk cha.
 + Cài đặt axios
 yarn add axios.
 interceptor axios : nghĩa là mình muốn làm một số việc gì đó, trước khi gửi lên server.
+
+https://viblo.asia/p/react-router-v6-gGJ59oVpZX2
+
+shortkey: tsrpfc
