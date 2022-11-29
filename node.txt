@@ -23,3 +23,7 @@ interceptor axios : nghĩa là mình muốn làm một số việc gì đó, tr�
 https://viblo.asia/p/react-router-v6-gGJ59oVpZX2
 
 shortkey: tsrpfc
+
+Add CssBaseline vào index.tsx
+
+Tìm hiểu flexFlow
