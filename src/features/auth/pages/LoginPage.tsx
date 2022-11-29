@@ -1,6 +1,18 @@
 import * as React from 'react';
 import { Paper, makeStyles, Typography, Button } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
+import styled from 'styled-components';
+import {
+  palette,
+  PaletteProps,
+  spacing,
+  SpacingProps,
+  typography,
+  TypographyProps,
+} from '@material-ui/system';
+
+const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
+  ${palette}${spacing}${typography}
+`;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +36,7 @@ export default function LoginPage() {
         <Typography variant="h5" component="h1">
           Student Managemnet
         </Typography>
-        <Box>
+        <Box mt={4}>
           <Button fullWidth variant="contained" color="primary">
             Fake Login
           </Button>
