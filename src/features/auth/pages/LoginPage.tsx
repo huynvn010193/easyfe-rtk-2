@@ -9,6 +9,8 @@ import {
   typography,
   TypographyProps,
 } from '@material-ui/system';
+import { useAppDispatch } from 'app/hooks';
+import { authActions } from '../authSlice';
 
 const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
   ${palette}${spacing}${typography}
@@ -29,6 +31,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginPage() {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
+
+  const handleLoginClick = () => {
+    // TODO : Get username and pwd from Login Form
+    dispatch(
+      authActions.login({
+        username: '',
+        password: '',
+      })
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -37,7 +50,7 @@ export default function LoginPage() {
           Student Managemnet
         </Typography>
         <Box mt={4}>
-          <Button fullWidth variant="contained" color="primary">
+          <Button fullWidth variant="contained" color="primary" onClick={handleLoginClick}>
             Fake Login
           </Button>
         </Box>
