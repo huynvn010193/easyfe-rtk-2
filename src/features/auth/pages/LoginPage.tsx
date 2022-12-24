@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Paper, makeStyles, Typography, Button } from '@material-ui/core';
+import { Paper, makeStyles, Typography, Button, CircularProgress } from '@material-ui/core';
 import styled from 'styled-components';
 import {
   palette,
@@ -9,7 +9,7 @@ import {
   typography,
   TypographyProps,
 } from '@material-ui/system';
-import { useAppDispatch } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { authActions } from '../authSlice';
 
 const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
@@ -32,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
 export default function LoginPage() {
   const classes = useStyles();
   const dispatch = useAppDispatch();
+  const isLogging = useAppSelector((state) => state.auth.logging);
+  console.log('🚀 ~ file: LoginPage.tsx:36 ~ LoginPage ~ isLogging', isLogging);
 
   const handleLoginClick = () => {
     // TODO : Get username and pwd from Login Form
@@ -51,6 +53,7 @@ export default function LoginPage() {
         </Typography>
         <Box mt={4}>
           <Button fullWidth variant="contained" color="primary" onClick={handleLoginClick}>
+            {isLogging && <CircularProgress size={20} color="secondary"></CircularProgress>}
             Fake Login
           </Button>
         </Box>

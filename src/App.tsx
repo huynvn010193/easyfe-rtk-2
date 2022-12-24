@@ -15,11 +15,6 @@ function App() {
       <Button variant="contained" color="primary" onClick={() => dispatch(authActions.logout())}>
         Logout
       </Button>
-      {/* <Routes>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/admin/*" element={<PrivateRoute childComp={<AdminLayout />} />}></Route>
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes> */}
       <Switch>
         <Route path="/login">
           <LoginPage />
