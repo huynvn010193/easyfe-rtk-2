@@ -31,3 +31,6 @@ Tìm hiểu flexFlow
 ==== 
 Connected-react-router: thư viện giúp mình đồng bộ routing của mình vào redux-store.
 
+==
+Cài history : yarn add history@4.10.1
+

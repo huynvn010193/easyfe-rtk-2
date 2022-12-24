@@ -8,16 +8,23 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 
+import { history } from 'utils';
+import { ConnectedRouter } from 'connected-react-router';
+
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <ConnectedRouter history={history}>
+        <CssBaseline />
+        {/* <App /> */}
+      </ConnectedRouter>
+      {/* <BrowserRouter>
         <CssBaseline />
         <App />
-      </BrowserRouter>
+      </BrowserRouter> */}
     </Provider>
   </React.StrictMode>
 );

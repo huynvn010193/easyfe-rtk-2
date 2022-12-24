@@ -1,4 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
+import { push } from 'connected-react-router';
 import { fork, take, delay, call, put } from 'redux-saga/effects';
 import { LoginPayload, authActions } from './authSlice';
 
@@ -13,6 +14,7 @@ function* handleLogin(payload: LoginPayload) {
       name: 'Easy FrontEnd'
     }));
   // redirect Admin page
+  yield put(push('/admin'));
 
   } catch (error) {
     yield put(authActions.loginFailed("error"));
