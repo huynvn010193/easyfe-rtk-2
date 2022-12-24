@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { delay, put, takeEvery, takeLatest } from "redux-saga/effects";
-import {  incrementSaga, incrementSagaSuccess } from "./counterSlice";
+import { delay, put, takeEvery } from "redux-saga/effects";
+import { incrementSaga, incrementSagaSuccess } from "./counterSlice";
 
 // export function* log(action: PayloadAction) {
 //   console.log('Log', action);

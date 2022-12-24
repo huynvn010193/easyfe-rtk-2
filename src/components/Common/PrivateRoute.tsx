@@ -1,13 +1,11 @@
-import { Navigate } from 'react-router-dom';
+import * as React from 'react';
+import { Redirect, Route, RouteProps } from 'react-router-dom';
 
-export function PrivateRoute({ childComp }: any) {
-  // Check if user is logged in
-  // if yes , show route
-  // Otherwise redirect to login page
+export interface PrivateRouteProps {}
 
+export function PrivateRoute(props: RouteProps) {
+  // checked if user is logged in
   const isLoggedIn = Boolean(localStorage.getItem('access_token'));
-
-  if (!isLoggedIn) return <Navigate to="/login" />;
-
-  return childComp;
+  if (!isLoggedIn) return <Redirect to="/login" />;
+  return <Route {...props} />;
 }

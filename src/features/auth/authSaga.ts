@@ -13,7 +13,9 @@ function* handleLogin(payload: LoginPayload) {
       id: 1,
       name: 'Easy FrontEnd'
     }));
-  // redirect Admin page
+  // redirect Admin page - Sẽ tạo ra 1 object -> sau đó dispatch lên redux-store : routerMiddleware Nhận thông tin 
+  // dispatch lên và giúp duy chuyển qua trang mới
+  
   yield put(push('/admin'));
 
   } catch (error) {
@@ -26,6 +28,9 @@ function* handleLogout() {
 
   // Xóa access_token
   localStorage.removeItem('access_token');
+
+  // Redirect Login page
+  yield put(push('/login'));
 }
 
 function* watchLoginFlow() {

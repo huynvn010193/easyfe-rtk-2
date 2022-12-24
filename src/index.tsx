@@ -1,15 +1,14 @@
+import { CssBaseline } from '@material-ui/core';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { store } from './app/store';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
-import { CssBaseline } from '@material-ui/core';
+import reportWebVitals from './reportWebVitals';
 
-import { history } from 'utils';
 import { ConnectedRouter } from 'connected-react-router';
+import { history } from 'utils';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -19,7 +18,7 @@ root.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <CssBaseline />
-        {/* <App /> */}
+        <App />
       </ConnectedRouter>
       {/* <BrowserRouter>
         <CssBaseline />

@@ -5,7 +5,7 @@ import { AdminLayout } from 'components/Layout';
 import { authActions } from 'features/auth/authSlice';
 import LoginPage from 'features/auth/pages/LoginPage';
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -20,6 +20,17 @@ function App() {
         <Route path="/admin/*" element={<PrivateRoute childComp={<AdminLayout />} />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes> */}
+      <Switch>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+        <PrivateRoute path="/admin">
+          <AdminLayout />
+        </PrivateRoute>
+        <Route>
+          <NotFound />
+        </Route>
+      </Switch>
     </div>
   );
 }
