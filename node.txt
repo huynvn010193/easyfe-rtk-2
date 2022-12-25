@@ -38,3 +38,7 @@ Cài history : yarn add history@4.10.1
 CM + K + W: đóng tất cả các cửa sổ
 Option + Shift + 0: xoá import dư
 
++Phân tích Dashboard State+
+= Phần trên: statistic
+= Điểm cao nhất: hightest studentList và thấp nhất: lowest StudentList.
+= rankingByCityList.
