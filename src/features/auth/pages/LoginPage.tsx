@@ -11,6 +11,7 @@ import {
 } from '@material-ui/system';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { authActions } from '../authSlice';
+import { Redirect } from 'react-router-dom';
 
 const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
   ${palette}${spacing}${typography}
@@ -33,7 +34,6 @@ export default function LoginPage() {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const isLogging = useAppSelector((state) => state.auth.logging);
-  console.log('🚀 ~ file: LoginPage.tsx:36 ~ LoginPage ~ isLogging', isLogging);
 
   const handleLoginClick = () => {
     // TODO : Get username and pwd from Login Form
@@ -44,6 +44,9 @@ export default function LoginPage() {
       })
     );
   };
+
+  const isLoggedIn = Boolean(localStorage.getItem('access_token'));
+  if (isLoggedIn) return <Redirect to="/admin/dashboard" />;
 
   return (
     <div className={classes.root}>
