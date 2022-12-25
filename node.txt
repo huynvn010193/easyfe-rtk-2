@@ -22,7 +22,8 @@ interceptor axios : nghĩa là mình muốn làm một số việc gì đó, tr�
 
 https://viblo.asia/p/react-router-v6-gGJ59oVpZX2
 
-shortkey: tsrpfc
+shortkey: tsrpfc : export not default
+tsdrpfc : export default.
 
 Add CssBaseline vào index.tsx
 
@@ -33,4 +34,7 @@ Connected-react-router: thư viện giúp mình đồng bộ routing của mình
 
 ==
 Cài history : yarn add history@4.10.1
+
+CM + K + W: đóng tất cả các cửa sổ
+Option + Shift + 0: xoá import dư
 

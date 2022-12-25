@@ -16,7 +16,7 @@ function* handleLogin(payload: LoginPayload) {
   // redirect Admin page - Sẽ tạo ra 1 object -> sau đó dispatch lên redux-store : routerMiddleware Nhận thông tin 
   // dispatch lên và giúp duy chuyển qua trang mới
   
-  yield put(push('/admin'));
+  yield put(push('/admin/dashboard'));
 
   } catch (error) {
     yield put(authActions.loginFailed("error"));

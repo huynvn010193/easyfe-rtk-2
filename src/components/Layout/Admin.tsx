@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { Box, makeStyles } from '@material-ui/core';
 import { Header, Sidebar } from 'components/Common';
+import { Route, Switch } from 'react-router-dom';
+import Doashboard from 'features/dashboard';
+import StudentFeature from 'features/student';
 
 export interface AdminLayoutProps {}
 
@@ -38,7 +41,16 @@ export function AdminLayout(props: AdminLayoutProps) {
       <Box className={classes.sidebar}>
         <Sidebar />
       </Box>
-      <Box className={classes.main}>Main</Box>
+      <Box className={classes.main}>
+        <Switch>
+          <Route path="/admin/dashboard">
+            <Doashboard />
+          </Route>
+          <Route path="/admin/students">
+            <StudentFeature />
+          </Route>
+        </Switch>
+      </Box>
     </Box>
   );
 }
