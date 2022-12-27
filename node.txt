@@ -25,7 +25,7 @@ https://viblo.asia/p/react-router-v6-gGJ59oVpZX2
 shortkey: tsrpfc : export not default
 tsdrpfc : export default.
 
-Add CssBaseline vào index.tsx
+* Nhớ thêm: Add CssBaseline vào index.tsx
 
 Tìm hiểu flexFlow
 
@@ -42,3 +42,9 @@ Option + Shift + 0: xoá import dư
 = Phần trên: statistic
 = Điểm cao nhất: hightest studentList và thấp nhất: lowest StudentList.
 = rankingByCityList.
+
+* Lưu ý về all: Nếu tất cả trong all là 
+    + blocking thì nó là blocking
+    + nonBlocking thì nó là nonBlocking
+
+Xem thêm: https://redux-saga.js.org/docs/api#blocking--non-blocking

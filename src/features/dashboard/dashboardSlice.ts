@@ -11,7 +11,7 @@ export interface DashboardStatistics {
 
 export interface RankingByCity {
   cityId: string;
-  rankingList: Student;
+  rankingList: Student[];
 }
 
 export interface DashboardState {
@@ -79,4 +79,3 @@ export const selectRankingByCityList = (state: RootState) => state.dashboard.ran
 // Reducer
 const dashboardReducer = dashboardSlice.reducer;
 export default dashboardReducer;
-
