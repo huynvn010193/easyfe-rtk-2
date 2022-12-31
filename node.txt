@@ -48,3 +48,9 @@ Option + Shift + 0: xoá import dư
     + nonBlocking thì nó là nonBlocking
 
 Xem thêm: https://redux-saga.js.org/docs/api#blocking--non-blocking
+
+=== Để Box có thể padding và margin ta thêm:
+
+const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
+  ${palette}${spacing}${typography}
+`;
