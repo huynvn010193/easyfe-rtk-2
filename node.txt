@@ -56,3 +56,26 @@ const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
 `;
 
 ====
+ROUTING:
+/admin/students: listing
+/admin/students/add : add new
+/admin/students/:studentId : update a student
+
+LISTING:
+- search by name
+- Filter by city
+- sort by nam, mark
+- Pagination
+
+student slice state:
+- loading
+- list
+- pagination 
+- filter { page: 1 limit: 10, ... }
+
+ADD:
+- React hook Form V7
+- Yup
+
+Trong router phải đưa
+Student Add lên trước StudentId vì nếu ngược 
