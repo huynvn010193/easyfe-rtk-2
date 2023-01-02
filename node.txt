@@ -55,7 +55,7 @@ const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
   ${palette}${spacing}${typography}
 `;
 
-====
+==== 29: cài đặt saga và slice.
 ROUTING:
 /admin/students: listing
 /admin/students/add : add new
@@ -78,4 +78,6 @@ ADD:
 - Yup
 
 Trong router phải đưa
-Student Add lên trước StudentId vì nếu ngược 
+Student Add lên trước StudentId vì nếu ngược
+
+- remove React strict mode => fix render useEffect 2 lần.
