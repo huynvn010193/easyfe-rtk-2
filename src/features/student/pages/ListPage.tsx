@@ -1,6 +1,12 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import React, { useEffect } from 'react';
-import { selectStudentList, studentActions } from '../studentSlice';
+import {
+  selectStudentFilter,
+  selectStudentList,
+  selectStudentLoading,
+  selectStudentPagination,
+  studentActions,
+} from '../studentSlice';
 import {
   palette,
   PaletteProps,
@@ -10,8 +16,9 @@ import {
   TypographyProps,
 } from '@material-ui/system';
 import styled from 'styled-components';
-import { Typography, Button, makeStyles } from '@material-ui/core';
+import { Typography, Button, makeStyles, LinearProgress } from '@material-ui/core';
 import { StudentTableList } from '../components/StudentTable';
+import { Pagination } from '@material-ui/lab';
 export interface AddEditPageProps {}
 
 const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
@@ -19,7 +26,9 @@ const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
 `;
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    position: 'relative',
+  },
   titleContainer: {
     display: 'flex',
     flexFlow: 'row nowrap',
@@ -27,24 +36,43 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginBottom: theme.spacing(4),
   },
+  pagination: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  loading: {
+    position: 'absolute',
+    top: theme.spacing(-1),
+    width: '100%',
+  },
 }));
 
 export function ListPage() {
   const dispatch = useAppDispatch();
   const classes = useStyles();
   const studentList = useAppSelector(selectStudentList);
+  const pagination = useAppSelector(selectStudentPagination);
+  const filter = useAppSelector(selectStudentFilter);
+  const loading = useAppSelector(selectStudentLoading);
+  const count = Math.ceil(pagination._totalRows / pagination._limit);
 
   useEffect(() => {
+    dispatch(studentActions.fetchStudentList(filter));
+  }, [dispatch, filter]);
+
+  const handlePageChange = (e: any, page: number) => {
+    // Khi thay đổi trang -> cập nhât lại filter và student List . Khi filter thay đổi thì fetch lại List
     dispatch(
-      studentActions.fetchStudentList({
-        _page: 1,
-        _limit: 15,
+      studentActions.setFilter({
+        ...filter,
+        _page: page,
       })
     );
-  }, [dispatch]);
+  };
 
   return (
     <Box className={classes.root}>
+      {loading && <LinearProgress />}
       <Box className={classes.titleContainer}>
         <Typography variant="h4">Students</Typography>
         <Button variant="contained" color="primary">
@@ -53,6 +81,16 @@ export function ListPage() {
       </Box>
       {/* StudentTableList  */}
       <StudentTableList studentList={studentList} />
+
+      {/* Pagination */}
+      <Box my={2} className={classes.pagination}>
+        <Pagination
+          count={count}
+          page={pagination._page}
+          onChange={handlePageChange}
+          color="primary"
+        />
+      </Box>
     </Box>
   );
 }

@@ -47,14 +47,14 @@ export function StudentTableList({ studentList, onEdit, onRemove }: StudentTable
               <TableCell>{student.city}</TableCell>
               <TableCell align="right">
                 <Button
-                  variant="contained"
+                  size="small"
                   color="primary"
                   onClick={() => onEdit?.(student)}
                   className={classes.edit}
                 >
                   Edit
                 </Button>
-                <Button variant="outlined" color="secondary" onClick={() => onRemove?.(student)}>
+                <Button size="small" color="secondary" onClick={() => onRemove?.(student)}>
                   Remove
                 </Button>
               </TableCell>

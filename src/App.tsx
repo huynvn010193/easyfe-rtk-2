@@ -2,7 +2,7 @@ import { useAppDispatch } from 'app/hooks';
 import { NotFound, PrivateRoute } from 'components/Common';
 import { AdminLayout } from 'components/Layout';
 import LoginPage from 'features/auth/pages/LoginPage';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -12,9 +12,13 @@ function App() {
         <Route path="/login">
           <LoginPage />
         </Route>
+
         <PrivateRoute path="/admin">
           <AdminLayout />
         </PrivateRoute>
+        <Route path="/" exact>
+          <Redirect to="/admin/dashboard" />
+        </Route>
         <Route>
           <NotFound />
         </Route>

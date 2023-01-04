@@ -81,3 +81,9 @@ Trong router phải đưa
 Student Add lên trước StudentId vì nếu ngược
 
 - remove React strict mode => fix render useEffect 2 lần.
+
+++ 31: Làm giao diện Pagination. : 
+- yarn add @material-ui/lab.
+totalPage = Math.ceil(totalRows / limit)
+  totalRows: tổng số item - limit : số item trên 1 trang:
+  Math.ceil : làm tròn. VD: 21 items / 10 item 1 trang = 21 / 10 = 2.1 -> làm tròn : 3
