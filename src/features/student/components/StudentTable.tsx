@@ -5,8 +5,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { Button, Paper } from '@material-ui/core';
+import { Box, Button, Paper } from '@material-ui/core';
 import { Student } from 'models';
+import { capitalizeString, getMarkColor } from 'utils';
 
 export interface StudentTableListProps {
   studentList: Student[];
@@ -40,10 +41,14 @@ export function StudentTableList({ studentList, onEdit, onRemove }: StudentTable
         <TableBody>
           {studentList.map((student, idx) => (
             <TableRow key={student.id}>
-              <TableCell>{student.id}</TableCell>
+              <TableCell width={310}>{student.id}</TableCell>
               <TableCell>{student.name}</TableCell>
-              <TableCell>{student.gender}</TableCell>
-              <TableCell>{student.mark}</TableCell>
+              <TableCell>{capitalizeString(student.gender)}</TableCell>
+              <TableCell>
+                <Box color={getMarkColor(student.mark)} fontWeight="bold">
+                  {student.mark}
+                </Box>
+              </TableCell>
               <TableCell>{student.city}</TableCell>
               <TableCell align="right">
                 <Button
