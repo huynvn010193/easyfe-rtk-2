@@ -19,6 +19,7 @@ import styled from 'styled-components';
 import { Typography, Button, makeStyles, LinearProgress } from '@material-ui/core';
 import { StudentTableList } from '../components/StudentTable';
 import { Pagination } from '@material-ui/lab';
+import { selectCityMap } from 'features/city/citySlice';
 export interface AddEditPageProps {}
 
 const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
@@ -54,6 +55,7 @@ export function ListPage() {
   const pagination = useAppSelector(selectStudentPagination);
   const filter = useAppSelector(selectStudentFilter);
   const loading = useAppSelector(selectStudentLoading);
+  const cityMap = useAppSelector(selectCityMap);
   const count = Math.ceil(pagination._totalRows / pagination._limit);
 
   useEffect(() => {
@@ -80,7 +82,7 @@ export function ListPage() {
         </Button>
       </Box>
       {/* StudentTableList  */}
-      <StudentTableList studentList={studentList} />
+      <StudentTableList studentList={studentList} cityMap={cityMap} />
 
       {/* Pagination */}
       <Box my={2} className={classes.pagination}>

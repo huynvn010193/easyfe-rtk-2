@@ -6,11 +6,14 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Box, Button, Paper } from '@material-ui/core';
-import { Student } from 'models';
+import { City, Student } from 'models';
 import { capitalizeString, getMarkColor } from 'utils';
 
 export interface StudentTableListProps {
   studentList: Student[];
+  cityMap: {
+    [key: string]: City;
+  };
   onEdit?: (student: Student) => void;
   onRemove?: (student: Student) => void;
 }
@@ -22,7 +25,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function StudentTableList({ studentList, onEdit, onRemove }: StudentTableListProps) {
+export function StudentTableList({
+  studentList,
+  cityMap,
+  onEdit,
+  onRemove,
+}: StudentTableListProps) {
   const classes = useStyles();
 
   return (
@@ -49,7 +57,7 @@ export function StudentTableList({ studentList, onEdit, onRemove }: StudentTable
                   {student.mark}
                 </Box>
               </TableCell>
-              <TableCell>{student.city}</TableCell>
+              <TableCell>{cityMap[student.city]?.name}</TableCell>
               <TableCell align="right">
                 <Button
                   size="small"
