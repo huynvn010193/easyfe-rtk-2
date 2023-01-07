@@ -87,3 +87,8 @@ Student Add lên trước StudentId vì nếu ngược
 totalPage = Math.ceil(totalRows / limit)
   totalRows: tổng số item - limit : số item trên 1 trang:
   Math.ceil : làm tròn. VD: 21 items / 10 item 1 trang = 21 / 10 = 2.1 -> làm tròn : 3
+
+===== 34:
+<OutlinedInput id="searchByName" label="Search by name" endAdornment={<Search />} />
+phải có label để chừa ra đúng khỏang cách.
+
