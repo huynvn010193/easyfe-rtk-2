@@ -80,6 +80,10 @@ export function ListPage() {
     dispatch(studentActions.setFilterWithDebouce(newFilter));
   };
 
+  const handleFilterChage = (newFilter: ListParams) => {
+    dispatch(studentActions.setFilter(newFilter));
+  };
+
   return (
     <Box className={classes.root}>
       {loading && <LinearProgress />}
@@ -92,7 +96,12 @@ export function ListPage() {
 
       {/* Filter  */}
       <Box mb={3}>
-        <StudentFilter filter={filter} cityList={cityList} onSearchChange={handleSearchChange} />
+        <StudentFilter
+          filter={filter}
+          cityList={cityList}
+          onSearchChange={handleSearchChange}
+          onChange={handleFilterChage}
+        />
       </Box>
 
       {/* StudentTableList  */}
