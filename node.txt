@@ -90,5 +90,8 @@ totalPage = Math.ceil(totalRows / limit)
 
 ===== 34:
 <OutlinedInput id="searchByName" label="Search by name" endAdornment={<Search />} />
-phải có label để chừa ra đúng khỏang cách.
+phải có prop label để chừa ra đúng khỏang cách.
 
+phải đợi user gõ xong mới đi search -> debouce.
+
+Dùng debouce của Saga.

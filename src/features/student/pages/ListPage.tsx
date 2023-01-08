@@ -21,6 +21,7 @@ import { StudentTableList } from '../components/StudentTable';
 import { Pagination } from '@material-ui/lab';
 import { selectCityList, selectCityMap } from 'features/city/citySlice';
 import { StudentFilter } from '../components/StudentFilter';
+import { ListParams } from 'models';
 export interface AddEditPageProps {}
 
 const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
@@ -61,6 +62,7 @@ export function ListPage() {
   const count = Math.ceil(pagination._totalRows / pagination._limit);
 
   useEffect(() => {
+    // Khi filter thay đổi sẽ fetch action StudentList.
     dispatch(studentActions.fetchStudentList(filter));
   }, [dispatch, filter]);
 
@@ -72,6 +74,10 @@ export function ListPage() {
         _page: page,
       })
     );
+  };
+
+  const handleSearchChange = (newFilter: ListParams) => {
+    dispatch(studentActions.setFilterWithDebouce(newFilter));
   };
 
   return (
@@ -86,7 +92,7 @@ export function ListPage() {
 
       {/* Filter  */}
       <Box mb={3}>
-        <StudentFilter filter={filter} cityList={cityList} />
+        <StudentFilter filter={filter} cityList={cityList} onSearchChange={handleSearchChange} />
       </Box>
 
       {/* StudentTableList  */}
