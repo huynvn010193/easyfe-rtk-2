@@ -21,7 +21,8 @@ import { StudentTableList } from '../components/StudentTable';
 import { Pagination } from '@material-ui/lab';
 import { selectCityList, selectCityMap } from 'features/city/citySlice';
 import { StudentFilter } from '../components/StudentFilter';
-import { ListParams } from 'models';
+import { ListParams, Student } from 'models';
+import studentApi from 'api/studentApi';
 export interface AddEditPageProps {}
 
 const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
@@ -84,6 +85,17 @@ export function ListPage() {
     dispatch(studentActions.setFilter(newFilter));
   };
 
+  const handleRemoveStudent = async (student: Student) => {
+    console.log('Handle remove student', student);
+    // call API trực tiếp
+    try {
+      await studentApi.remove(student?.id || '');
+
+      // re-fetch nhưng Giữ lại filter hiện tại. Giả bộ fetch lại student List. tạo ra tham chiếu mới để nhận bik
+      dispatch(studentActions.setFilter({ ...filter }));
+    } catch (error) {}
+  };
+
   return (
     <Box className={classes.root}>
       {loading && <LinearProgress />}
@@ -105,7 +117,11 @@ export function ListPage() {
       </Box>
 
       {/* StudentTableList  */}
-      <StudentTableList studentList={studentList} cityMap={cityMap} />
+      <StudentTableList
+        studentList={studentList}
+        cityMap={cityMap}
+        onRemove={handleRemoveStudent}
+      />
 
       {/* Pagination */}
       <Box my={2} className={classes.pagination}>
