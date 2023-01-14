@@ -1,12 +1,5 @@
-import { useAppDispatch, useAppSelector } from 'app/hooks';
-import React, { useEffect } from 'react';
-import {
-  selectStudentFilter,
-  selectStudentList,
-  selectStudentLoading,
-  selectStudentPagination,
-  studentActions,
-} from '../studentSlice';
+import { Button, LinearProgress, makeStyles, Typography } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
 import {
   palette,
   PaletteProps,
@@ -15,14 +8,23 @@ import {
   typography,
   TypographyProps,
 } from '@material-ui/system';
-import styled from 'styled-components';
-import { Typography, Button, makeStyles, LinearProgress } from '@material-ui/core';
-import { StudentTableList } from '../components/StudentTable';
-import { Pagination } from '@material-ui/lab';
-import { selectCityList, selectCityMap } from 'features/city/citySlice';
-import { StudentFilter } from '../components/StudentFilter';
-import { ListParams, Student } from 'models';
 import studentApi from 'api/studentApi';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { selectCityList, selectCityMap } from 'features/city/citySlice';
+import { ListParams, Student } from 'models';
+import { useEffect } from 'react';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
+import styled from 'styled-components';
+import { StudentFilter } from '../components/StudentFilter';
+import { StudentTableList } from '../components/StudentTable';
+import {
+  selectStudentFilter,
+  selectStudentList,
+  selectStudentLoading,
+  selectStudentPagination,
+  studentActions,
+} from '../studentSlice';
+
 export interface AddEditPageProps {}
 
 const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
@@ -52,6 +54,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function ListPage() {
+  const match = useRouteMatch();
+  const history = useHistory();
   const dispatch = useAppDispatch();
   const classes = useStyles();
   const studentList = useAppSelector(selectStudentList);
@@ -91,9 +95,13 @@ export function ListPage() {
     try {
       await studentApi.remove(student?.id || '');
 
-      // re-fetch nhưng Giữ lại filter hiện tại. Giả bộ fetch lại student List. tạo ra tham chiếu mới để nhận bik
+      // re-fetch nhưng Giữ lại filter hiện tại. Giả bộ fetch lại student List. tạo ra tham chiếu mới để nhận bik.
       dispatch(studentActions.setFilter({ ...filter }));
     } catch (error) {}
+  };
+
+  const handleEditStudent = (student: Student) => {
+    history.push(`${match.url}/${student.id}`);
   };
 
   return (
@@ -101,9 +109,11 @@ export function ListPage() {
       {loading && <LinearProgress />}
       <Box className={classes.titleContainer}>
         <Typography variant="h4">Students</Typography>
-        <Button variant="contained" color="primary">
-          Add new Student
-        </Button>
+        <Link to={`${match.url}/add`} style={{ textDecoration: 'none' }}>
+          <Button variant="contained" color="primary">
+            Add new Student
+          </Button>
+        </Link>
       </Box>
 
       {/* Filter  */}
@@ -121,6 +131,7 @@ export function ListPage() {
         studentList={studentList}
         cityMap={cityMap}
         onRemove={handleRemoveStudent}
+        onEdit={handleEditStudent}
       />
 
       {/* Pagination */}
