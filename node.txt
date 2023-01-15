@@ -95,3 +95,8 @@ phải có prop label để chừa ra đúng khỏang cách.
 phải đợi user gõ xong mới đi search -> debouce.
 
 Dùng debouce của Saga.
+
+===== 40: React hook Form. 
++ Thư viện sử dụng cho Fucntional component
++ Sử dụng theo hướng tiếp cận Un control component -> Giúp giải quyết những bài toán liên quan đến performence
++ Isolate Re-renders 
