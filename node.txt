@@ -99,4 +99,7 @@ Dùng debouce của Saga.
 ===== 40: React hook Form. 
 + Thư viện sử dụng cho Fucntional component
 + Sử dụng theo hướng tiếp cận Un control component -> Giúp giải quyết những bài toán liên quan đến performence
-+ Isolate Re-renders 
++ Isolate Re-renders
+ 
+====42: Add react hook form
+yarn add react-hook-form @hookform/resolvers yup

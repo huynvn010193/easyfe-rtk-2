@@ -4,6 +4,7 @@ import studentApi from 'api/studentApi';
 import { Student } from 'models';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import StudentForm from '../components/StudentForm';
 
 export interface AddEditPageProps {}
 
@@ -24,7 +25,20 @@ export function AddEditPage() {
     })();
   }, [studentId]);
 
-  console.log('Found Student', student);
+  // nếu như student có giá trị sẽ overide lại hết còn ko thì lấy giá trị mặc định
+  // khác phục cách khai báo string bị báo lỗi -> Ép kiểu về Student
+  const initialValues: Student = {
+    name: '',
+    age: '',
+    mark: '',
+    gender: 'male',
+    city: '',
+    ...student,
+  } as Student;
+
+  const handleStudentFormSubmit = (formValues: Student) => {
+    // TODO: Handle submit here
+  };
 
   return (
     <Box>
@@ -36,6 +50,13 @@ export function AddEditPage() {
       <Typography variant="h4" style={{ textDecoration: 'none' }}>
         {isEdit ? 'Update student Info' : 'Add new student'}
       </Typography>
+
+      {/* Nếu trường hợp add thì hiện lên với giá trị mặc định, còn edit thì phải đợi API trả về student */}
+      {(!isEdit || Boolean(student)) && (
+        <Box mt={3}>
+          <StudentForm initialValues={initialValues} onSubmit={handleStudentFormSubmit} />
+        </Box>
+      )}
     </Box>
   );
 }
