@@ -1,5 +1,5 @@
 import { Box, Button } from '@material-ui/core';
-import { InputField } from 'components/FormFields';
+import { InputField, RadioGroupField } from 'components/FormFields';
 import { Student } from 'models';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,6 +8,17 @@ export interface StudentFormProps {
   initialValues?: Student;
   onSubmit?: (formValues: Student) => void;
 }
+
+const genderArr = [
+  {
+    label: 'Male',
+    value: 'male',
+  },
+  {
+    label: 'Female',
+    value: 'female',
+  },
+];
 
 export default function StudentForm({ initialValues, onSubmit }: StudentFormProps) {
   const { control, handleSubmit } = useForm<Student>({
@@ -22,9 +33,10 @@ export default function StudentForm({ initialValues, onSubmit }: StudentFormProp
     <Box maxWidth={350}>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
         <InputField name="name" control={control} label="Full Name" />
+        <RadioGroupField name="gender" control={control} label="Gender" options={genderArr} />
+
         <InputField name="age" control={control} label="Age" type="number" />
         <InputField name="mark" control={control} label="Mark" type="number" />
-        <InputField name="gender" control={control} label="Gender" />
         <InputField name="city" control={control} label="City" />
         <Box>
           <Button variant="contained" color="primary" type="submit">
