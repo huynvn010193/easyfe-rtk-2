@@ -103,3 +103,6 @@ Dùng debouce của Saga.
  
 ====42: Add react hook form
 yarn add react-hook-form @hookform/resolvers yup
+
+====44: Làm form Validation
+Lợi ích của việc sử dụng ref (inputRef) trong inputField là sẽ foucus vào input đang sai khi submit or scroll
