@@ -3,12 +3,13 @@ import { ChevronLeft } from '@material-ui/icons';
 import studentApi from 'api/studentApi';
 import { Student } from 'models';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import StudentForm from '../components/StudentForm';
 
 export interface AddEditPageProps {}
 
 export function AddEditPage() {
+  const history = useHistory();
   const { studentId } = useParams<{ studentId: string }>();
   const isEdit = Boolean(studentId);
   const [student, setStudent] = useState<Student>();
@@ -33,11 +34,22 @@ export function AddEditPage() {
     mark: '',
     gender: 'male',
     city: '',
-    ...student,
+    ...student?.data,
   } as Student;
 
-  const handleStudentFormSubmit = (formValues: Student) => {
+  const handleStudentFormSubmit = async (formValues: Student) => {
     // TODO: Handle submit here
+    // Do đã bắt lỗi ở StudentForm nên trên tk cha ko bắt lỗi (try/catch).
+    if (isEdit) {
+      await studentApi.update(formValues);
+    } else {
+      await studentApi.add(formValues);
+    }
+
+    // fake 1 error
+    throw new Error('My testing Error');
+
+    // Redirect bacto Student List
   };
 
   return (

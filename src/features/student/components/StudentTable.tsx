@@ -78,32 +78,39 @@ export function StudentTableList({
             </TableRow>
           </TableHead>
           <TableBody>
-            {studentList.map((student, idx) => (
-              <TableRow key={student.id}>
-                <TableCell width={310}>{student.id}</TableCell>
-                <TableCell>{student.name}</TableCell>
-                <TableCell>{capitalizeString(student.gender)}</TableCell>
-                <TableCell>
-                  <Box color={getMarkColor(student.mark)} fontWeight="bold">
-                    {student.mark}
-                  </Box>
-                </TableCell>
-                <TableCell>{cityMap[student.city]?.name}</TableCell>
-                <TableCell align="right">
-                  <Button
-                    size="small"
-                    color="primary"
-                    onClick={() => onEdit?.(student)}
-                    className={classes.edit}
-                  >
-                    Edit
-                  </Button>
-                  <Button size="small" color="secondary" onClick={() => handleRemoveClick(student)}>
-                    Remove
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {studentList.map((student, idx) => {
+              console.log('student', student);
+              return (
+                <TableRow key={student.id}>
+                  <TableCell width={310}>{student.data?.id || student.id}</TableCell>
+                  <TableCell>{student.name}</TableCell>
+                  <TableCell>{capitalizeString(student.data?.gender || student.gender)}</TableCell>
+                  <TableCell>
+                    <Box color={getMarkColor(student.data?.mark || student.mark)} fontWeight="bold">
+                      {student.data?.mark || student.mark}
+                    </Box>
+                  </TableCell>
+                  <TableCell>{cityMap[student.data?.city || student.city]?.name}</TableCell>
+                  <TableCell align="right">
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={() => onEdit?.(student)}
+                      className={classes.edit}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      size="small"
+                      color="secondary"
+                      onClick={() => handleRemoveClick(student)}
+                    >
+                      Remove
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
