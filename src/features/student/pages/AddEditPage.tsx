@@ -4,6 +4,7 @@ import studentApi from 'api/studentApi';
 import { Student } from 'models';
 import { useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import StudentForm from '../components/StudentForm';
 
 export interface AddEditPageProps {}
@@ -21,7 +22,7 @@ export function AddEditPage() {
     (async () => {
       try {
         const data: Student = await studentApi.getById(studentId);
-        setStudent(data);
+        setStudent(data?.data || data);
       } catch (error) {}
     })();
   }, [studentId]);
@@ -34,22 +35,24 @@ export function AddEditPage() {
     mark: '',
     gender: 'male',
     city: '',
-    ...student?.data,
+    ...student,
   } as Student;
 
   const handleStudentFormSubmit = async (formValues: Student) => {
     // TODO: Handle submit here
     // Do đã bắt lỗi ở StudentForm nên trên tk cha ko bắt lỗi (try/catch).
+
     if (isEdit) {
       await studentApi.update(formValues);
     } else {
       await studentApi.add(formValues);
     }
 
-    // fake 1 error
-    throw new Error('My testing Error');
+    // Toast success
+    toast.success('Save student success');
 
     // Redirect bacto Student List
+    history.push('/admin/students');
   };
 
   return (

@@ -111,3 +111,6 @@ Lợi ích của việc sử dụng ref (inputRef) trong inputField là sẽ aut
 formState: { isSubmitting } : isSubmitting -> thời gian thực hiện hết hàm handleSubmitForm.
 Partial<Student> : khái báo typeScript chỉ truyền lên 1 phần của Student.
 Array.isArray(cityOptions) : check Array
+
+=====46: Toast
+https://fkhadra.github.io/react-toastify/introduction

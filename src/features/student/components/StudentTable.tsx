@@ -79,7 +79,6 @@ export function StudentTableList({
           </TableHead>
           <TableBody>
             {studentList.map((student, idx) => {
-              console.log('student', student);
               return (
                 <TableRow key={student.id}>
                   <TableCell width={310}>{student.data?.id || student.id}</TableCell>

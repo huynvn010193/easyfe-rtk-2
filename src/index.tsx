@@ -1,5 +1,4 @@
 import { CssBaseline } from '@material-ui/core';
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
@@ -10,6 +9,9 @@ import reportWebVitals from './reportWebVitals';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from 'utils';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
@@ -19,10 +21,20 @@ root.render(
       <CssBaseline />
       <App />
     </ConnectedRouter>
-    {/* <BrowserRouter>
-        <CssBaseline />
-        <App />
-      </BrowserRouter> */}
+    <ToastContainer
+      position="top-right"
+      autoClose={500}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+    />
+    {/* Same as */}
+    <ToastContainer />
   </Provider>
 );
 

@@ -14,6 +14,7 @@ import { selectCityList, selectCityMap } from 'features/city/citySlice';
 import { ListParams, Student } from 'models';
 import { useEffect } from 'react';
 import { Link, useHistory, useRouteMatch } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { StudentFilter } from '../components/StudentFilter';
 import { StudentTableList } from '../components/StudentTable';
@@ -94,6 +95,8 @@ export function ListPage() {
     // call API trực tiếp
     try {
       await studentApi.remove(student?.id || '');
+
+      toast.success('Remove student successfully');
 
       // re-fetch nhưng Giữ lại filter hiện tại. Giả bộ fetch lại student List. tạo ra tham chiếu mới để nhận bik.
       dispatch(studentActions.setFilter({ ...filter }));
